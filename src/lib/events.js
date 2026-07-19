@@ -1,50 +1,41 @@
+import { supabase } from "./supabase.js";
+
 export const FALLBACK_EVENT_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/57af007a-e5e4-40ff-b27e-85605a6777fd_1600w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/evenements/reczVUFB5nYxiBD01/cover.jpg";
 
-/** Airtable column names vary, so read the first key that exists. */
-export function getField(record, keys) {
-  if (!record || !record.fields) return null;
-  for (const key of keys) {
-    if (record.fields[key] !== undefined) return record.fields[key];
-  }
-  return null;
+const COLONNES = "id, titre, surtitre, sous_titre, categorie, date, description, image_url, galerie";
+
+/** Événements du plus récent au plus ancien. `limite` pour la page d'accueil. */
+export async function fetchEvenements(limite) {
+  let requete = supabase
+    .from("evenements")
+    .select(COLONNES)
+    .order("date", { ascending: false });
+
+  if (limite) requete = requete.limit(limite);
+
+  const { data, error } = await requete;
+  if (error) throw error;
+  return data;
 }
 
-export const getTitle = (record) =>
-  getField(record, ["Name", "Titre", "Title"]);
+export async function fetchEvenement(id) {
+  const { data, error } = await supabase
+    .from("evenements")
+    .select(COLONNES)
+    .eq("id", id)
+    .maybeSingle();
 
-export const getStrapline = (record) =>
-  getField(record, ["Strapline", "Surtitre"]);
-
-export const getCategory = (record) =>
-  getField(record, ["Category", "Catégorie", "Type"]);
-
-export const getRawDate = (record) =>
-  getField(record, ["Date", "Date de l'événement"]);
-
-export function getEventImage(record) {
-  const attachments = getField(record, ["Image", "Photo", "Affiche", "Cover"]);
-  return attachments && attachments.length > 0
-    ? attachments[0].url
-    : FALLBACK_EVENT_IMAGE;
+  if (error) throw error;
+  return data;
 }
 
-export function getGallery(record) {
-  const attachments = getField(record, [
-    "Galerie",
-    "Photos",
-    "Gallery",
-    "Images",
-  ]);
-  return attachments && attachments.length > 0
-    ? attachments.map((a) => a.url)
-    : [];
-}
+export const getEventImage = (evenement) =>
+  evenement?.image_url || FALLBACK_EVENT_IMAGE;
 
-export function formatEventDate(record) {
-  const raw = getRawDate(record);
-  if (!raw) return "Date à venir";
-  return new Date(raw).toLocaleDateString("fr-FR", {
+export function formatEventDate(evenement) {
+  if (!evenement?.date) return "Date à venir";
+  return new Date(evenement.date).toLocaleDateString("fr-FR", {
     year: "numeric",
     month: "long",
     day: "numeric",

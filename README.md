@@ -24,17 +24,23 @@ npm run build
 
 ## Données des événements
 
-Les événements viennent d'une base Airtable exposée par l'API de production
-sur `/api/events` et `/api/events/:id`. En développement, `vite.config.js`
-proxifie `/api` vers `https://lesainesdabord.com` — les pages événements
-affichent donc les mêmes contenus que le site en ligne.
+Les événements sont dans Supabase (projet « Les aînés d'abord »), table
+`evenements`, lue via `src/lib/events.js`. La table est en lecture seule
+publique (RLS) : le site lit, il n'écrit jamais. Pour ajouter ou modifier un
+événement, passez par le Table Editor de Supabase.
 
-Pour un déploiement autonome, il faut soit héberger cette API, soit remplacer
-les `fetch("/api/events")` dans `Home.jsx`, `Evenements.jsx` et
-`EvenementDetail.jsx` par une source de données locale.
+Copiez `.env.example` vers `.env.local` avant de lancer le projet. La clé
+`VITE_SUPABASE_ANON_KEY` est publique par conception — c'est la RLS qui
+protège les données. Ne mettez jamais la clé `service_role` dans ce fichier.
 
-## Images
+Les photos des événements sont dans le bucket public `evenements` du même
+projet, rangées par événement (`{id}/cover.jpg`, `{id}/galerie-01.jpg`…).
 
-Les visuels pointent vers le bucket public Supabase utilisé par le site
-d'origine (`hoirqrkdgbmvpwutwuwj.supabase.co`). Les photos locales du dossier
-parent (`Def/`, `video/`) ne sont pas encore utilisées.
+## Images du reste du site
+
+⚠️ Les visuels des pages accueil, missions et qui-sommes-nous pointent encore
+vers le bucket du prestataire d'origine (`hoirqrkdgbmvpwutwuwj.supabase.co`),
+sur lequel nous n'avons aucun contrôle. Elles disparaîtront s'il ferme son
+projet. À rapatrier dans le bucket `evenements` (ou un bucket `site` dédié).
+
+Les photos locales du dossier parent (`Def/`, `video/`) ne sont pas utilisées.

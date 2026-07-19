@@ -5,11 +5,9 @@ import ImmersionSection from "../components/ImmersionSection.jsx";
 import { DONATE_URL } from "../socials.js";
 import {
   CARD_COLORS,
+  fetchEvenements,
   formatEventDate,
-  getCategory,
   getEventImage,
-  getStrapline,
-  getTitle,
 } from "../lib/events.js";
 
 const HERO_IMAGE =
@@ -36,11 +34,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch("/api/events");
-        if (response.ok) {
-          const events = await response.json();
-          setLatestEvents(events.slice(0, 3));
-        }
+        setLatestEvents(await fetchEvenements(3));
       } catch (error) {
         console.error("Failed to fetch latest events", error);
       }
@@ -203,8 +197,7 @@ export default function Home() {
             {latestEvents.length > 0 ? (
               latestEvents.map((event, index) => {
                 const color = CARD_COLORS[index % CARD_COLORS.length];
-                const strapline = getStrapline(event);
-                const category = getCategory(event);
+                const { surtitre, categorie } = event;
 
                 return (
                   <motion.div
@@ -219,11 +212,11 @@ export default function Home() {
                       <div className="rounded-[30px] overflow-hidden aspect-[4/3]">
                         <img
                           src={getEventImage(event)}
-                          alt={getTitle(event) || "Événement"}
+                          alt={event.titre || "Événement"}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      {strapline ? (
+                      {surtitre ? (
                         <div className="absolute -bottom-4 -left-2 sm:-left-4 bg-white/95 backdrop-blur-sm p-1.5 sm:p-2 pr-3 sm:pr-5 rounded-[24px] shadow-lg flex items-center gap-2 sm:gap-3 border border-stone-100 scale-75 sm:scale-90 origin-bottom-left">
                           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#141414] rounded-full flex items-center justify-center shrink-0">
                             <iconify-icon
@@ -233,14 +226,14 @@ export default function Home() {
                             />
                           </div>
                           <p className="text-xs sm:text-base font-playfair text-stone-900 tracking-wide">
-                            {strapline}
+                            {surtitre}
                           </p>
                         </div>
                       ) : (
-                        category && (
+                        categorie && (
                           <div className="absolute bottom-4 left-4">
                             <span className="bg-[#F6D365] text-stone-900 px-4 py-1.5 rounded-full text-[12px] font-bold shadow-sm">
-                              {category}
+                              {categorie}
                             </span>
                           </div>
                         )
@@ -249,7 +242,7 @@ export default function Home() {
 
                     <div className="flex-grow">
                       <h3 className="text-lg sm:text-2xl font-playfair font-medium text-stone-900 leading-tight mb-2 sm:mb-4 line-clamp-2">
-                        {getTitle(event) || "Événement sans titre"}
+                        {event.titre || "Événement sans titre"}
                       </h3>
                       <p className="text-stone-400 font-sans text-sm sm:text-lg">
                         {formatEventDate(event)}

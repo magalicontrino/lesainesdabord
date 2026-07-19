@@ -3,13 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import Markdown from "react-markdown";
 import {
+  fetchEvenement,
   formatEventDate,
-  getCategory,
   getEventImage,
-  getField,
-  getGallery,
-  getStrapline,
-  getTitle,
 } from "../lib/events.js";
 
 export default function EvenementDetail() {
@@ -23,9 +19,7 @@ export default function EvenementDetail() {
     if (!id) return;
     (async () => {
       try {
-        const response = await fetch(`/api/events/${id}`);
-        if (!response.ok) throw new Error("Failed to fetch event details");
-        setEvent(await response.json());
+        setEvent(await fetchEvenement(id));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -56,21 +50,14 @@ export default function EvenementDetail() {
     );
   }
 
-  const title = getTitle(event) || "Événement sans titre";
+  const title = event.titre || "Événement sans titre";
   const date = formatEventDate(event);
-  const strapline = getStrapline(event);
-  const category = getCategory(event);
-  const description = getField(event, ["Description", "Notes", "Contenu"]) || "";
-  const subtitle =
-    getField(event, [
-      "Subtitle",
-      "Sous-titre",
-      "Résumé",
-      "Excerpt",
-      "Description courte",
-    ]) || "";
+  const strapline = event.surtitre;
+  const category = event.categorie;
+  const description = event.description || "";
+  const subtitle = event.sous_titre || "";
   const coverImage = getEventImage(event);
-  const gallery = getGallery(event);
+  const gallery = event.galerie || [];
 
   return (
     <div className="bg-white min-h-screen">

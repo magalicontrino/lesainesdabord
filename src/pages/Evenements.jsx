@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import {
   CARD_COLORS,
+  fetchEvenements,
   formatEventDate,
-  getCategory,
   getEventImage,
-  getStrapline,
-  getTitle,
 } from "../lib/events.js";
 
 export default function Evenements() {
@@ -18,9 +16,7 @@ export default function Evenements() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch("/api/events");
-        if (!response.ok) throw new Error("Failed to fetch events");
-        setEvents(await response.json());
+        setEvents(await fetchEvenements());
       } catch (err) {
         setError(err.message);
       } finally {
@@ -86,8 +82,7 @@ export default function Evenements() {
           <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 pb-4 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0">
             {events.map((event, index) => {
               const color = CARD_COLORS[index % CARD_COLORS.length];
-              const strapline = getStrapline(event);
-              const category = getCategory(event);
+              const { surtitre, categorie } = event;
 
               return (
                 <motion.div
@@ -102,11 +97,11 @@ export default function Evenements() {
                     <div className="rounded-[30px] overflow-hidden aspect-[4/3]">
                       <img
                         src={getEventImage(event)}
-                        alt={getTitle(event) || "Événement"}
+                        alt={event.titre || "Événement"}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    {strapline ? (
+                    {surtitre ? (
                       <div className="absolute -bottom-4 -left-2 sm:-left-4 bg-white/95 backdrop-blur-sm p-2 pr-4 sm:pr-5 rounded-[24px] shadow-lg flex items-center gap-2 sm:gap-3 border border-stone-100">
                         <div className="w-10 h-10 bg-[#141414] rounded-full flex items-center justify-center shrink-0">
                           <iconify-icon
@@ -116,14 +111,14 @@ export default function Evenements() {
                           />
                         </div>
                         <p className="text-sm sm:text-base font-playfair text-stone-900 tracking-wide">
-                          {strapline}
+                          {surtitre}
                         </p>
                       </div>
                     ) : (
-                      category && (
+                      categorie && (
                         <div className="absolute bottom-4 left-4">
                           <span className="bg-[#F6D365] text-stone-900 px-4 py-1.5 rounded-full text-[12px] font-bold shadow-sm">
-                            {category}
+                            {categorie}
                           </span>
                         </div>
                       )
@@ -132,7 +127,7 @@ export default function Evenements() {
 
                   <div className="flex-grow">
                     <h3 className="text-lg sm:text-2xl font-playfair font-medium text-stone-900 leading-tight mb-2 sm:mb-4 line-clamp-2">
-                      {getTitle(event) || "Événement sans titre"}
+                      {event.titre || "Événement sans titre"}
                     </h3>
                     <p className="text-stone-400 font-sans text-sm sm:text-lg">
                       {formatEventDate(event)}
