@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
 const IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e3f6ab6-bf09-4013-af89-00bb56d6cf8d_800w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-immersion.jpg";
 
 export default function ImmersionSection() {
   return (

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { DONATE_URL, SOCIALS, socialHref } from "../socials.js";
 
 const LOGO =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/13c94f83-4222-40a7-8b59-a378896ac0fa_320w.png";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/logo.png";
 
 const NAV_LINKS = [
   { to: "/quisommesnous", label: "Qui sommes-nous ?" },

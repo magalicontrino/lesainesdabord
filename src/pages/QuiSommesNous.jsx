@@ -6,22 +6,22 @@ const TEAM = [
   {
     name: "MR. SIMPLICE ONOYA",
     role: "...",
-    img: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7a941afc-2296-4bd2-916f-631dbd4d7876_1600w.jpg",
+    img: "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/equipe/simplice.jpg",
   },
   {
     name: "MM. CARINE",
     role: "Fondatrice, CEO",
-    img: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/650331d9-44bc-465f-98c9-a8ae51c8289d_320w.jpg",
+    img: "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/equipe/carine.jpg",
   },
   {
     name: "MM.",
     role: "...",
-    img: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1b82c38-2b1f-4b1a-a11a-74bb85d70282_1600w.jpg",
+    img: "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-hero.jpg",
   },
   {
     name: "M.",
     role: "...",
-    img: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e3f6ab6-bf09-4013-af89-00bb56d6cf8d_800w.jpg",
+    img: "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-immersion.jpg",
   },
 ];
 
@@ -62,10 +62,10 @@ const BELIEFS = [
 ];
 
 const ENGAGEMENT_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0fa4d261-54b7-4d7a-861f-69ea8ce8f24e_1600w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-presence.jpg";
 
 const BANNER_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9a807ce2-6cc6-40ba-babd-844aa8902926_3840w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-panoramique.jpg";
 
 export default function QuiSommesNous() {
   const [openFaq, setOpenFaq] = useState(null);

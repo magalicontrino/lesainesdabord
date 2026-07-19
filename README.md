@@ -36,11 +36,12 @@ protège les données. Ne mettez jamais la clé `service_role` dans ce fichier.
 Les photos des événements sont dans le bucket public `evenements` du même
 projet, rangées par événement (`{id}/cover.jpg`, `{id}/galerie-01.jpg`…).
 
-## Images du reste du site
+## Images du site
 
-⚠️ Les visuels des pages accueil, missions et qui-sommes-nous pointent encore
-vers le bucket du prestataire d'origine (`hoirqrkdgbmvpwutwuwj.supabase.co`),
-sur lequel nous n'avons aucun contrôle. Elles disparaîtront s'il ferme son
-projet. À rapatrier dans le bucket `evenements` (ou un bucket `site` dédié).
+Les visuels des pages (accueil, équipe, logo) sont dans le bucket public
+`site` du même projet Supabase, avec des noms lisibles :
+`logo.png`, `accueil-hero.jpg`, `moments/01.jpg`, `equipe/carine.jpg`…
+
+Le site ne dépend plus d'aucun serveur tiers.
 
 Les photos locales du dossier parent (`Def/`, `video/`) ne sont pas utilisées.

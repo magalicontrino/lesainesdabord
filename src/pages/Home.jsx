@@ -11,21 +11,21 @@ import {
 } from "../lib/events.js";
 
 const HERO_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1b82c38-2b1f-4b1a-a11a-74bb85d70282_1600w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-hero.jpg";
 
 const PANORAMIC_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9a807ce2-6cc6-40ba-babd-844aa8902926_3840w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-panoramique.jpg";
 
 const PRESENCE_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0fa4d261-54b7-4d7a-861f-69ea8ce8f24e_1600w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/accueil-presence.jpg";
 
 const GALLERY = [
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/46d64f73-bcea-43a1-b0a2-4a67eefd33c4_800w.jpg",
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/90a9e4fe-1b16-4e10-856d-3671d175f8ee_800w.jpg",
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/08086b1f-baf1-4d64-82e9-bbf6c3cf927a_800w.jpg",
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/302b42de-a056-4d30-94a8-ebec9a95c6c9_800w.jpg",
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6a71df65-544c-4f57-8a1c-a87d13894c6d_800w.jpg",
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/650331d9-44bc-465f-98c9-a8ae51c8289d_800w.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/01.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/02.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/03.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/04.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/05.jpg",
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/moments/06.jpg",
 ];
 
 export default function Home() {

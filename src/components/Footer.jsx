@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { DONATE_URL } from "../socials.js";
 
 const FOUNDER_PHOTO =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/650331d9-44bc-465f-98c9-a8ae51c8289d_320w.jpg";
+  "https://qmrardtopeisqxpcpjzy.supabase.co/storage/v1/object/public/site/equipe/carine.jpg";
 
 const VOLUNTEER_STEPS = [
   {
