@@ -9,4 +9,6 @@ const HREFS = {
 export const socialHref = (network) =>
   HREFS[network] ?? `https://www.${network}.com`;
 
-export const DONATE_URL = "https://www.gofundme.com/";
+// Page de don officielle de l'ASBL sur Donoor (plateforme belge).
+// S'active une fois Stripe connecté côté Donoor.
+export const DONATE_URL = "https://donoor.org/pay/lesainesdabord";
